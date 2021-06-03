@@ -16,6 +16,8 @@
 
     <string name="num1">+91 9611609185</string>
     <string name="num2">+91 7338510220</string>
+    <string name="mail1">mayur5pai@gmail.com</string>
+    <string name="mail2">darshan@gmail.com</string>
     <string name="contact">contact</string>
 
     <string name="Text1">The application is purely built on Android Studio   which is the official Integrated Development   Environment (IDE) for Google\'s Android OS , built   on JetBrains\' IntelliJ IDEA software and designed specifically for Android development.</string>
