@@ -10,7 +10,23 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_vehicleNum"
-            android:icon="@drawable/ic_license_plate"
+            android:icon="@drawable/ic_baseline_book_online_24"
             android:title="@string/menu_vehicleNum" />
+
+        <item
+            android:id="@+id/nav_estfair"
+            android:icon="@drawable/ic_baseline_directions_24"
+            android:title="@string/menu_estfair" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="@string/menu_share" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_baseline_contact_support_24"
+            android:title="@string/menu_about" />
+
     </group>
+
 </menu>
