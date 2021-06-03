@@ -8,5 +8,9 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_vehicleNum"
+            android:icon="@drawable/ic_license_plate"
+            android:title="@string/menu_vehicleNum" />
     </group>
 </menu>
