@@ -13,8 +13,20 @@
 
     <fragment
         android:id="@+id/nav_vehicleNum"
-        android:name="com.example.afm.ui.home.VehicleNumber"
+        android:name="com.example.afm.ui.home.VehicleFragment"
         android:label="@string/menu_vehicleNum"
         tools:layout="@layout/fragment_vehicle_number" />
+
+    <fragment
+        android:id="@+id/nav_estfair"
+        android:name="com.example.afm.ui.home.EstimateFragment"
+        android:label="@string/menu_estfair"
+        tools:layout="@layout/estimate_fragment" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.afm.ui.home.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/about_fragment" />
 
 </navigation>
