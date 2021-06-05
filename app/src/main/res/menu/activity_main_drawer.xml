@@ -20,11 +20,6 @@
             android:title="@string/menu_estfair" />
 
         <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_baseline_share_24"
-            app:showAsAction="always"
-            android:title="@string/menu_share" />
-        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_baseline_contact_support_24"
             android:title="@string/menu_about" />

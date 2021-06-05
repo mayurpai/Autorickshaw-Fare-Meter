@@ -13,6 +13,7 @@
     <string name="menu_about">About</string>
     <string name="menu_estfair">Estimate Fare</string>
     <string name="afm_logo">AFM Logo</string>
+    <string name="vehiclepage">Vehicle_Page</string>
 
     <string name="num1">+91 9611609185</string>
     <string name="num2">+91 7338510220</string>
@@ -27,5 +28,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="communicate">Communicate</string>
     <string name="Creators"><![CDATA[Created With ❤ By Mayur & Darshan]]></string>
+    <string name="enter_vehicle_number">Enter Vehicle Number</string>
+    <string name="ka_05_af_8484">KA-05-AF-8484</string>
 
 </resources>
