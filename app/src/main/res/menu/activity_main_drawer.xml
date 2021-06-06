@@ -9,6 +9,12 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_details"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="@string/menu_details" />
+
         <item
             android:id="@+id/nav_vehicleNum"
             android:icon="@drawable/ic_baseline_book_online_24"
