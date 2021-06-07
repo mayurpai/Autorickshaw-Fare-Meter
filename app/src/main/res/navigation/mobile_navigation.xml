@@ -35,5 +35,11 @@
         android:label="@string/menu_details"
         tools:layout="@layout/details_fragment" />
 
+    <fragment
+        android:id="@+id/nav_trip"
+        android:name="com.example.afm.ui.home.TripFragment"
+        android:label="@string/menu_trip"
+        tools:layout="@layout/trip_fragment" />
+
 
 </navigation>

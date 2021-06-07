@@ -26,6 +26,11 @@
             android:title="@string/menu_estfair" />
 
         <item
+            android:id="@+id/nav_trip"
+            android:icon="@drawable/ic_baseline_transfer_within_a_station_24"
+            android:title="@string/menu_trip" />
+
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_baseline_contact_support_24"
             android:title="@string/menu_about" />
