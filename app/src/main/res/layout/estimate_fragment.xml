@@ -164,6 +164,7 @@
         android:background="@drawable/roundedbuttons"
         android:fontFamily="serif"
         android:text="@string/button"
+        android:onClick="calculate"
         android:textColor="@color/colorPrimary111"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
