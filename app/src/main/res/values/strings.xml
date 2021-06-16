@@ -43,7 +43,7 @@
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="phone">Phone</string>
-    <string name="date_of_birth">Date Of Birth</string>
+    <string name="date_of_birth">12/06/2000</string>
     <string name="username">Username</string>
     <string name="e_mail_address">E-mail Address</string>
     <string name="sex">Sex :</string>
@@ -52,5 +52,6 @@
     <string name="e_mail">E-mail :</string>
     <string name="phonenum">Phone :</string>
     <string name="dob">DOB :</string>
+    <string name="submit">Submit!</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.afm.ui.home;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -51,6 +52,7 @@ public class EstimateFragment extends Fragment {
         double distNine = Double.parseDouble(minCharge)+(5.13*13);
         double distTen = Double.parseDouble(minCharge)+(5.86*13);
 
+
         calFare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +96,16 @@ public class EstimateFragment extends Fragment {
                                 calFare.setClickable(false);
                             }
                         } else {
-//                            Toast.makeText(getActivity(), "Source/Destination Not Within Our Database!", Toast.LENGTH_SHORT).show();
+//                            Toast toast = Toast.makeText(getActivity(), "Source/Destination Not Within Our Database!", Toast.LENGTH_SHORT);
+//                            toast.show();
+//                            Handler handler = new Handler();
+//                            handler.postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    toast.cancel();
+//                                }
+//                            }, 1000);;
+
                         }
                     }
                 }
@@ -102,6 +113,7 @@ public class EstimateFragment extends Fragment {
         });
         return view;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
