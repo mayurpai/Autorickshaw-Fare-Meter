@@ -1,2 +1,2 @@
-rootProject.name = "AFM"
+rootProject.name = "myApp"
 include ':app'
