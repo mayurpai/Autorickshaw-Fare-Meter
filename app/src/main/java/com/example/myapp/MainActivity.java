@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case 4 :
-                        Toast.makeText(MainActivity.this, "View Only During The Entry Of Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Viewed Only During The Entry Of Details", Toast.LENGTH_SHORT).show();
                         fragment = new HomeFragment();
                         break;
                     case 5 :
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 else if(item.getId() == 3) {
                     Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                 }
-                else if(item.getId() == 4) {
-                    Toast.makeText(MainActivity.this, "Trip Details", Toast.LENGTH_SHORT).show();
+                else if(item.getId() == 4) {;
+//                    Toast.makeText(MainActivity.this, "Trip Details", Toast.LENGTH_SHORT).show();
                 }
                 else if(item.getId() == 5) {
                     Toast.makeText(MainActivity.this, "About Us", Toast.LENGTH_SHORT).show();

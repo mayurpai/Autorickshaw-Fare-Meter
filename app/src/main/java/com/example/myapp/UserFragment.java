@@ -56,6 +56,7 @@ public class UserFragment extends Fragment {
     EditText username,email,phone,dob;
     RadioButton sex,male,female;
     Button submit;
+    DBHelper DB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_user, container, false);
+        DB = new DBHelper(getActivity());
         username = view.findViewById(R.id.editText);
         email = view.findViewById(R.id.editText4);
         phone = view.findViewById(R.id.editText2);
@@ -104,13 +106,25 @@ public class UserFragment extends Fragment {
                         bundle.putString("mob",phone.getText().toString());
                         bundle.putString("date",dob.getText().toString());
                         bundle.putString("gender",gender);
-                    TripFragment fragment = new TripFragment();
-                    fragment.setArguments(bundle);
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayout2, fragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    Boolean checkuser = DB.checkUsername(email.toString());
+                    if(!checkuser) {
+                        Boolean insert = DB.insertData(username.toString(), email.toString(), phone.toString(), dob.toString());
+                        if (insert) {
+                            Toast.makeText(getActivity(), "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                            TripFragment fragment = new TripFragment();
+                            fragment.setArguments(bundle);
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayout2, fragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        } else {
+                            Toast.makeText(getActivity(), "Registration Failed!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "User Already Exists, Kindly Sign In!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     Toast toast = Toast.makeText(getActivity(), "Kindly, Enter The Details Wisely", Toast.LENGTH_SHORT);
