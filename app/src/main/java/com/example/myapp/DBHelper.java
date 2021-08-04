@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -24,10 +25,10 @@ public class DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists users");
     }
 
-    public Boolean insertData(String firstName,String eMail,String mobileNumber,String dob) {
+    public Boolean insertData(String firstName, String eMail, String mobileNumber, String dob) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("firstName",firstName);
+        contentValues.put("firstName", String.valueOf(firstName));
         contentValues.put("eMail",eMail);
         contentValues.put("mobileNumber",mobileNumber);
         contentValues.put("dob",dob);

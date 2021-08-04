@@ -53,7 +53,10 @@ public class UserFragment extends Fragment {
         return fragment;
     }
 
-    EditText username,email,phone,dob;
+    EditText username;
+    EditText email;
+    EditText phone;
+    EditText dob;
     RadioButton sex,male,female;
     Button submit;
     DBHelper DB;
@@ -106,9 +109,9 @@ public class UserFragment extends Fragment {
                         bundle.putString("mob",phone.getText().toString());
                         bundle.putString("date",dob.getText().toString());
                         bundle.putString("gender",gender);
-                    Boolean checkuser = DB.checkUsername(email.toString());
+                    Boolean checkuser = DB.checkUsername(email.getText().toString());
                     if(!checkuser) {
-                        Boolean insert = DB.insertData(username.toString(), email.toString(), phone.toString(), dob.toString());
+                        Boolean insert = DB.insertData(username.getText().toString(), email.getText().toString(), phone.getText().toString(), dob.getText().toString());
                         if (insert) {
                             Toast.makeText(getActivity(), "Registered Successfully!", Toast.LENGTH_SHORT).show();
                             TripFragment fragment = new TripFragment();
