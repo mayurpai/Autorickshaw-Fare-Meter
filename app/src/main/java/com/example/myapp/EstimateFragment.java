@@ -1,7 +1,10 @@
 package com.example.myapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
 
 /**
@@ -51,11 +55,16 @@ public class EstimateFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+
     }
 
     EditText enterSource,enterDestination;
     TextView fare;
-    Button calFare;
+    Button calFare,direction;
+    private static double[] address;
+    float minfare=25;
+    float totalfare;
+    private static DecimalFormat df=new DecimalFormat("0.00");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,20 +84,86 @@ public class EstimateFragment extends Fragment {
         enterDestination = view.findViewById(R.id.editText4);
         fare = view.findViewById(R.id.textView10);
         calFare = view.findViewById(R.id.button);
+        direction = view.findViewById(R.id.gmap);
         //2.84    //3.43               //4.56  //6.15  //7.13       //7.86
-        String sources[] = {"Sahyadri","V K Shetty Auditorium","Adyar Complex","Barakah International","Shetty Lunch Home","Kannur","First Neuro Hospital","Padil","Nagori","Pumpwell","Kankanady"};
-        String destinations[] = {"Sahyadri","V K Shetty Auditorium","Adyar Complex","Barakah International","Shetty Lunch Home","Kannur","First Neuro Hospital","Padil","Nagori","Pumpwell","Kankanady"};
+        String sources[] = {"Sahyadri", "V K Shetty Auditorium", "Adyar Complex", "Barakah International", "Shetty Lunch Home", "Kannur", "First Neuro Hospital", "Padil", "Nagori", "Pumpwell", "Kankanady"};
+        String destinations[] = {"Sahyadri", "V K Shetty Auditorium", "Adyar Complex", "Barakah International", "Shetty Lunch Home", "Kannur", "First Neuro Hospital", "Padil", "Nagori", "Pumpwell", "Kankanady"};
         String minKm = "2";
         String minCharge = "23.00";
         String addChargePerKm = "13";
-        double distFive = Double.parseDouble(minCharge)+(0.84*13);
-        double distSix = Double.parseDouble(minCharge)+(1.43*13);
-        double distSeven = Double.parseDouble(minCharge)+(2.56*13);
-        double distEight = Double.parseDouble(minCharge)+(4.15*13);
-        double distNine = Double.parseDouble(minCharge)+(5.13*13);
-        double distTen = Double.parseDouble(minCharge)+(5.86*13);
+        double distFive = Double.parseDouble(minCharge) + (0.84 * 13);
+        double distSix = Double.parseDouble(minCharge) + (1.43 * 13);
+        double distSeven = Double.parseDouble(minCharge) + (2.56 * 13);
+        double distEight = Double.parseDouble(minCharge) + (4.15 * 13);
+        double distNine = Double.parseDouble(minCharge) + (5.13 * 13);
+        double distTen = Double.parseDouble(minCharge) + (5.86 * 13);
+
+
+        //code for google map
+        direction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String start = enterSource.getText().toString().trim();
+                String dest = enterDestination.getText().toString().trim();
+
+                if (start.equals("") && dest.equals("")) {
+                    Toast.makeText(getActivity(), "Enter Both Location", Toast.LENGTH_SHORT).show();
+                } else {
+                    DisplayTrack(start, dest);
+                }
+            }
+        });
+
 
         calFare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (enterSource.getText().toString().trim().equals("") || enterDestination.getText().toString().trim().equals("")) {
+                    Toast.makeText(getActivity(), "Enter the Source/Destination", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    findlatlong();
+                }
+                if (address == null) {
+                    Toast.makeText(getActivity(), "Could Not Find Latititude And Longitude", Toast.LENGTH_SHORT).show();
+                } else {
+                    double dis = distance(address);
+                    float distance = (float) (dis/1000);
+                    Toast.makeText(getActivity(), "Distance:"+distance, Toast.LENGTH_SHORT).show();
+                    if(distance<1)
+                        totalfare=minfare;
+                    else if(distance>6)
+                        totalfare=minfare+((distance-1)*20);
+                    else
+                        totalfare=minfare+((distance-1)*10);
+                    fare.setText("Rs."+df.format(totalfare));
+                }
+            }
+        });
+        return view;
+    }
+
+    private double distance(double[] p1) {
+        //Toast.makeText(getActivity(),""+p1[0]+" "+p1[1]+" "+p1[2]+" "+p1[3],Toast.LENGTH_LONG).show();
+        double R = 6378137; // Earth’s mean radius in meter
+        double dLat = rad(p1[2]-p1[0]);
+        double dLong = rad(p1[3]-p1[1]);
+        double a = (Math.sin(dLat / 2) * Math.sin(dLat / 2)) +
+                (Math.cos(rad(p1[0])) * Math.cos(rad(p1[3])) *
+                        Math.sin(dLong / 2) * Math.sin(dLong / 2));
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = R * c;
+        return d;
+    }
+
+    private double rad(double x) {
+        return x * Math.PI / 180;
+    }
+
+
+
+
+        /*calFare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(enterSource.getText().toString().matches("") && enterDestination.getText().toString().matches("")){
@@ -200,6 +275,39 @@ public class EstimateFragment extends Fragment {
                 }
             }
         });
-        return view;
+        return view;*/
+
+
+
+
+    private void findlatlong() {
+        String[] address=new String[2];
+        address[0]= enterSource.getText().toString().trim();
+        address[1]= enterDestination.getText().toString().trim();
+        GeoLocation geolocation = new GeoLocation();
+        geolocation.getAddress(address,getActivity(),new GeoHandler());
     }
+
+    private void DisplayTrack(String start, String dest) {
+        Uri uri=Uri.parse("https://www.google.co.in/maps/dir/"+ start + "/" + dest);
+
+        Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+        intent.setPackage("com.google.android.apps.maps");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private class GeoHandler extends Handler {
+        @Override
+        public void handleMessage( Message msg) {
+            //ArrayList address=new ArrayList<Double>();
+            switch (msg.what) {
+                case 1:
+                    Bundle bundle = msg.getData();
+                    address = bundle.getDoubleArray("address");
+                    break;
+            }
+        }
+    }
+
 }
