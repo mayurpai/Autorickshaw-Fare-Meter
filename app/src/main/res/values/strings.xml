@@ -55,4 +55,8 @@
     <string name="phonenum">Phone :</string>
     <string name="dob">DOB :</string>
     <string name="submit">Submit!</string>
+    <string name="our_focus_remains_intact_in_making_users_aware_about_the_meter_tweeks">Our focus remains intact in making users aware about the meter tweeks.</string>
+    <string name="the_easy_navigation_offered_in_the_app_makes_the_usability_simple">The easy navigation offered in the app makes the usability simple.</string>
+    <string name="the_integration_of_google_maps_makes_it_even_more_enhancing_and_user_friendly">The integration of Google maps makes it even more enhancing and user-friendly.</string>
+    <string name="the_user_details_entered_will_be_stored_safe_and_secure_making_privacy_essential">The user details entered will be stored safe and secure making privacy essential.</string>
 </resources>
